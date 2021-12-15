@@ -1,17 +1,17 @@
-﻿using System;
+﻿using GenericDictionary;
+using System;
+
+MyDictionary<int, string> informations = new MyDictionary<int, string>();
+
+informations.Add(1, "Zeki");
+Console.WriteLine(informations.Length);
+
+informations.Add(2, "Mehmet");
+Console.WriteLine(informations.Length);
 
 
-namespace DictionaryExample
+
+foreach (var item in informations.Values)
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            DictionaryList<string> bilgiler = new DictionaryList<string>();
-            bilgiler.Add("Zeki");
-            bilgiler.Add("Mehmet");
-            bilgiler.Print();
-            Console.WriteLine(bilgiler.Count);
-        }
-    }
+    Console.WriteLine(item);
 }

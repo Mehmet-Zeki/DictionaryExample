@@ -4,40 +4,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DictionaryExample
+namespace GenericDictionary
 {
-    class DictionaryList<T>
+    public class MyDictionary<TKey, TValue>
     {
-        T[] items;
-        public DictionaryList()
+        TKey[] tKeys;
+        TValue[] tValues;
+        public MyDictionary()
         {
-            items =new T[0];
+            tKeys = new TKey[0];
+            tValues = new TValue[0];
         }
-        public void Add(T item)
+
+        public void Add(TKey keyT, TValue valueT)
         {
-            T[] tmpArray = items;
-            items = new T[items.Length + 1];
-            for (int i = 0; i < tmpArray.Length; i++)
+            TKey[] tempKeysArr = tKeys;
+            TValue[] tempValuesArr = tValues;
+
+            tKeys = new TKey[tKeys.Length + 1];
+            tValues = new TValue[tValues.Length + 1];
+
+            for (int i = 0; i < tempKeysArr.Length; i++)
             {
-                items[i] = tmpArray[i];
+                tKeys[i] = tempKeysArr[i];
             }
-            items[items.Length-1]=item;
-        }
-        public void Print()
-        {
-            for (int i = 0; i < items.Length; i++)
+
+            for (int i = 0; i < tempValuesArr.Length; i++)
             {
-                Console.WriteLine(items[i]);
+                tValues[i] = tempValuesArr[i];
             }
+
+            tKeys[tKeys.Length - 1] = keyT;
+            tValues[tKeys.Length - 1] = valueT;
         }
-        public int Count
+
+        public int Length
         {
-            get { return items.Length; }
+            get { return tKeys.Length; }
         }
-
-
-
+        public TValue[] Values
+        {
+            get { return tValues; }
+        }
+        public TKey[] Keys
+        {
+            get { return tKeys; }
+        }
     }
-
-   
 }
+
+
+
